@@ -9,6 +9,11 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
+        <style>
+        .standout { color: #42b0f4; }
+        .reveal p.credit { font-size: 20px; }
+        </style>
+
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -31,34 +36,158 @@
                 </section>
                 <section>
                     <section>
-                        Origin Story
+                        <h3>User Facilties Have a Data Problem</h3>
+                        <h3>...and many Data Opportunities! :-D</h3>
+                        <p>It starts at <span class="standout">data acquisition.</span></p>
+                        <p>The solution has start there too.</p>
                     </section>
                     <section>
-                        How We Used to Do It
+                        <p class="standout">What changed to make data problems harder?</p>
                         <ul>
-                            <li>Scripts, "Macros", or GUIs tuned to specific
-                                hardware and techniques</li>
-                            <li>Output files in bespoke formats/layouts</li>
-                            <li>We take data home on a USB stick, hard drive,
-                                or FTP.</li>
-                            <li>Critical context (metadata) held in our heads</li>
+                            <li>Sources got brighter; detectors got larger and faster: greater data <em>velocity</em> and <em>volume</em>.</li>
+                            <li>This exposes the <em>variety</em> problem we
+                                have at user facilties:
+                                <ul>
+                                    <li>large and changing collection of instruments</li>
+                                    <li>wide span of data rates, structures, and access patterns</li>
+                                    <li>mix of well-established data processing procedures and original, improvised techniques</li>
+                                </ul>
+                            </li>
+                            <li>Multi-modal analysis makes this an N^2, ... problem.
                         </ul>
                     </section>
                     <section>
-                        How We Did It Before That
-                        <p><em>insert photo of brake cables</em></p>
+                        <p class="standout">What changed to make data problems easier?</p>
                     </section>
                     <section>
-                        What changed?
+                        Free, open-source scientific software exploded.
+                        <img src="assets/state-of-the-stack-2015.png" style="max-width: 70%; height: auto;"/>
+                        <p class="credit">Figure Credit: "State of the Stack" by Jake VanderPlas, SciPy Conference 2015</p>
+                    </section>
+                    <section>
+                        <p>HPC is becoming more accessible.</p>
+                        <p>One inviting example: <a href="https://jupyter.nersc.gov">jupyter.nersc.gov</a></p>
+                        <table>
+                            <tr>
+                                <td><img src="assets/jupyter-icon.png" style="max-width: 200px; height: auto; background-color: white;" /></td>
+                                <td><img src="assets/dask-icon.png" style="max-width: 200px; height: auto; background-color: white;" /></td>
+                            </tr>
+                        </table>
                         <ul>
-                            <li>Streaming data processing exists. We want it!</li>
-                            <li>Detectors got larger and faster: greater data
-                            "velocity" and "volume".</li>
-                            <li>Free, open-source data analysis software exploded
-                                (SciPy, PyData, R, etc.).</li>
-                            <li>Tooling like GitHub makes it easier to use
-                                others' code and work collaboratively.</li>
+                            <li>Jupyter as a familiar, user-friendly portal</li>
+                            <li>Dask for familiar numpy/pandas idioms distributed over many nodes</li>
                         </ul>
+                    </section>
+                    <section>
+                        Lately it's become more practical to work openly and collaboratively....
+                        <ul>
+                            <li>across instuments within a facility</li>
+                            <li>between facilities</li>
+                            <li>with outside communities with similar data problems (e.g. climate science)</li>
+                        </ul>
+                        <img src="assets/gh-screenshot.png" style="width: 100%; "/>
+                    </section>
+                    <section>
+                        <p>...which is not a <em>new</em> idea, but ease-of-use matters.</p>
+                            <img src="assets/open-source-open-science-at-bnl.png" sytle="width: 100%; height: auto;" />
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Status Quo:<br />Data and Metadata are Scattered</h3>
+                        <ul>
+                            <li>Some critical context is only in people's heads</li>
+                            <li>Many file formats (tif, cbf, Nexus, other HDF5, proprietary, ...)</li>
+                            <li><code>meta_data_in_37K_fname_005_NaCl_cal.tif</code></li>
+                            <li>"Magic numbers" buried in analysis tools</li>
+                            <li>Notes in paper notebooks</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">What's the problem?</p>
+                        <ul>
+                            <li>Not machine-readable or searchable</li>
+                            <li>Relationship between any two pieces of data unclear</li>
+                            <li>Inhibits multi-modal work</li>
+                            <li>Inhibits code reuse</li>
+                            <li>Not streaming friendly</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>The data-management equivalent of reaching through a cage to access the hutch....</p>
+                        <img src="assets/george-brown-ssrl-1979.jpg" style="height: 200px; width: auto;" />
+                        <p class="credit"><em>SSRL, 1979. George Brown reaching through a caged hutch door. H/T Ron Pindak. </em></p>
+                        <p>It's a good start, but it doesn't scale.</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>What do we need to systematically track?</h3>
+                    </section>
+                    <section>
+                        <p>Experimental Data</p>
+                        <ul>
+                            <li class="fragment">Analysis needs more than "primary" data stream</li>
+                            <li class="fragment">Timestamps</li>
+                            <li class="fragment">Secondary measurements</li>
+                            <li class="fragment">"Fixed" experimental values</li>
+                            <li class="fragment">Calibration / beam-line conguration data</li>
+                            <li class="fragment">Hardware settings</li>
+                            <li class="fragment">Hardware diagnostics</li>
+                            <li class="fragment">Physical details of the hardware</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Sample Data</p>
+                        <ul>
+                            <li class="fragment">What is the sample?</li>
+                            <li class="fragment">What is the contrast mechanism?</li>
+                            <li class="fragment">Why are we looking at it?</li>
+                            <li class="fragment">How was it prepared?</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Bureaucratic & Management Information
+                        <ul>
+                            <li class="fragment">Where is the data and how to get it?</li>
+                            <li class="fragment">Who took the data?</li>
+                            <li class="fragment">Who owns or can access the data?</li>
+                            <li class="fragment">How long will we keep the data?</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Design Goals</h3>
+                        <ul>
+                            <li class="fragment">Generic across science domains</li>
+                            <li class="fragment">Lightweight</li>
+                            <li class="fragment">Put metadata in a predictable place</li>
+                            <li class="fragment">Handle asynchronous data streams</li>
+                            <li class="fragment">Support muti-modal</li>
+                            <li class="fragment">Simultaneous, cross-beamline, cross-facility</li>
+                            <li class="fragment">Support streaming</li>
+                            <li class="fragment">Cloud friendly</li>
+                        </ul>
+                    </section>
+                    <section>
+                        We want "streaming-first" tooling.
+                        <ul>
+                            <li>Live visualization</li>
+                            <li>Live data reduction and "first pass" analysis</li>
+                            <li>Adaptive experiment logic</li>
+                        </ul>
+                        <table>
+                            <tr>
+                                <td><img src="assets/tomopy-demo.gif" style="max-width: 250px; height: auto; background-color: white;" /></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td><img src="assets/adaptive-scan-demo.gif" style="max-width: 250px; height: auto; background-color: white;" /></td>
+                                <td><img src="assets/livefit-demo.gif" style="max-width: 250px; height: auto; background-color: white;" /></td>
+                            </tr>
+                        </table>
                     </section>
                 </section>
                 <section>
