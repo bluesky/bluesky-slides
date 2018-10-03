@@ -12,6 +12,7 @@
         <style>
         .standout { color: #42b0f4; }
         .reveal p.credit { font-size: 20px; }
+        .reveal p.detail { font-size: 20px; }
         </style>
 
 		<!-- Theme used for syntax highlighting of code -->
@@ -85,6 +86,7 @@
                             <li>Jupyter as a familiar, user-friendly portal</li>
                             <li>Dask for familiar numpy/pandas idioms distributed over many nodes</li>
                         </ul>
+                        <p>Also: Commodity cloud-based science: BinderHub, Pangeo, etc.</p>
                     </section>
                     <section>
                         Lately it's become more practical to work openly and collaboratively....
@@ -134,8 +136,8 @@
                     </section>
                     <section>
                         <p>Experimental Data</p>
+                        Analysis needs more than "primary" data stream:
                         <ul>
-                            <li class="fragment">Analysis needs more than "primary" data stream</li>
                             <li class="fragment">Timestamps</li>
                             <li class="fragment">Secondary measurements</li>
                             <li class="fragment">"Fixed" experimental values</li>
@@ -167,35 +169,86 @@
                 <section>
                     <section>
                         <h3>Design Goals</h3>
+                        <p>both technical and socilogical</p>
+                        <p>for an end-to-end data acquisition and analysis solution that leverages data science libraries</p>
+                    </section>
+                    <section>
+                        <p>Technical Goals</p>
                         <ul>
                             <li class="fragment">Generic across science domains</li>
                             <li class="fragment">Lightweight</li>
                             <li class="fragment">Put metadata in a predictable place</li>
                             <li class="fragment">Handle asynchronous data streams</li>
-                            <li class="fragment">Support muti-modal</li>
-                            <li class="fragment">Simultaneous, cross-beamline, cross-facility</li>
+                            <li class="fragment">Support muti-modal: simultaneous, cross-beamline, cross-facility</li>
                             <li class="fragment">Support streaming</li>
                             <li class="fragment">Cloud friendly</li>
                         </ul>
                     </section>
                     <section>
-                        We want "streaming-first" tooling.
+                        <p>Sociological Goals</p>
                         <ul>
-                            <li>Live visualization</li>
-                            <li>Live data reduction and "first pass" analysis</li>
-                            <li>Adaptive experiment logic</li>
+                            <li class="fragment">Overcome "not-invented-here"-ism.</li>
+                            <li class="fragment">Make <em>co-developed but separately useful</em> components with well-defined boundaries which can be adopted piecemeal by other facilities.</li>
+                            <li class="fragment">Drawing inspiration from the numpy project, embrace <em>protocols</em> for interoperability.</li>
                         </ul>
-                        <table>
-                            <tr>
-                                <td><img src="assets/tomopy-demo.gif" style="max-width: 250px; height: auto; background-color: white;" /></td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td><img src="assets/adaptive-scan-demo.gif" style="max-width: 250px; height: auto; background-color: white;" /></td>
-                                <td><img src="assets/livefit-demo.gif" style="max-width: 250px; height: auto; background-color: white;" /></td>
-                            </tr>
-                        </table>
+                    </section>
+                    <section>
+                    <p class="standout">It's working!</p>
+                    <ul>
+                        <li>Components have been adopted and built upon at APS, ALS, LCLS...</li>
+                        <li>...and those projects have been adopted at NSLS-II in turn.</li>
+                        <li>The entire framework will be adopted by APS-U beamlines.</li>
+                    </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Bluesky Architecture</h3>
+                        <img src="assets/collection-overview.svg" style="background: white;" />
+                    </section>
+                    <section>
+                        <p class="standout">Event Model</p>
+                        <ul>
+                            <li>Simon went over it in his talk, so I don't have to!</li>
+                            <li>Everything document has a unique ID and a timestamp.</li>
+                            <li>Specific domains, facilities, collaborations, research groups can overlay schemas implementing their own standards.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Interfaces, not File Formats</p>
+                        <ul>
+                            <li>Unopinionated about file formats</li>
+                            <li>Separates I/O from science logic</li>
+                            <li>Plays well with streaming / cloud</li>
+                            <li>Separates semantics from on-disk serialization and transport mechanism</li>
+                            <li>Can change storage with no change to consumer code</li>
+                            <li>Live data and saved data can be fed into the same consumers ("streaming first!")</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Payoff:<br />Easy and robust integration with existing software</h3>
+                    </section>
+                    <section>
+                        <p>A Gaussian is fit to a stream of measured data using the Python library <em>lmfit</em> (from U. Chicago / APS).</p>
+                        <img src="assets/livefit-demo.gif" style="max-width: 500px; height: auto; background-color: white;" />
+                    </section>
+                    <section>
+                        <p>Proof of concept:<br />In this scan, each step is determined adaptively in response to local slope.</p>
+                        <img src="assets/adaptive-scan-demo.gif" style="max-width: 500px; height: auto; background-color: white;" />
+                        <p class="detail">The system is designed to make fast feedback easy to write.</p>
+                    </section>
+                    <section>
+                        <p>LCLS's <a href="https://pswww.slac.stanford.edu/swdoc/releases/skywalker/">Skywalker</a>
+                        project builds on this to automatically deliver the photon beam to a
+                        number of experimental hutches at LCLS.</p>
+                        <img src="assets/skywalker-demo.gif" style="max-width: 500px; height: auto; background-color: white;" />
+                    </section>
+                    <section>
+                        <p>A stream of images from a linear detector is reconstructed into a volume using <em>tomopy</em> (APS).</p>
+                        <img src="assets/tomopy-demo.gif" style="max-width: 700px; height: auto; background-color: white;" />
+                        <p class="detail">It took one tomopy developer and one bluesky developer less than 20 minutes to write this.</p>
                     </section>
                 </section>
 			</div>
