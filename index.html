@@ -253,10 +253,24 @@
                 <section>
                     <section>
                         <h3>Possibly Controversial<br />Lessons Learned</h3>
+                    </section>
+                    <section>
                         <ul>
-                            <li>Users should not generally access raw data files directly.</li>
-                            <li>Keep valuable scientific code well away from fragile I/O or GUI code. Refactor or rewrite libraries that fail to do this.</li>
+                            <li>Users should not generally access raw files directly.</li>
+                            <li>Keep valuable scientific code well away from fragile I/O or GUI code. Refactor libraries that don't do this.</li>
                             <li>Collaborate on modular <em>libraries</em> and GUI components, not self-contained applications.</li>
+                            <li>Consider complexity in advance. Bolting it on afterward it costly.</li>
+                            <li>Embrace layers. Large frameworks are hard to reuse or maintain.</li>
+                            <li>Make it easy for others to reuse coherent pieces they need.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Gaps</p>
+                        <ul>
+                            <li>Many existing tools are tightly coupled to certain file layouts.</li>
+                            <li>Software literacy.</li>
+                            <li>Nonalignment of incentives and time horizons: "go far together" vs "go fast alone".</li>
+                            <li>It's hard to justify writing something for reuse by hypothetical external collaborators.</li>
                         </ul>
                     </section>
                 </section>
