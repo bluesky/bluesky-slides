@@ -276,7 +276,7 @@ frobulator2 = Frobulator(...)</code></pre>
                     <section>
                         <p>BlueSky: an experiment specification and orchetsration engine</p>
                         <ul>
-                            <li>Specify the logic of an experiment at a high level (e.g. <code>scan</code>). Employ low-level detail/control (e.g. <code>trigger</code>) only when you need it.</li>
+                            <li>Specify the logic of an experiment in a hardware-abstracted way. Bluesky says a detector <em>should</em> be triggered; ophyd sorts out <em>how</em>.</li>
                             <li>First-class support for <strong>adaptive feedback</strong> between analysis and acquisition.</li>
                             <li>Data is emitted in a <strong>streaming</strong> fashion in standard Python data structures.</li>
                             <li>Pause/resume, robust error handling, and rich metadata capture are built in.</li>
