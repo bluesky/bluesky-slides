@@ -255,21 +255,6 @@
                         </ul>
                     </section>
                     <section>
-                        <p>Example</p>
-                        <p>Suppose I want to control two new "frobulators". This ophyd code configures them for integration with bluesky.</p>
-                        <pre><code>from ophyd import Device, Signal, Component
-
-class Frobulator(Device):
-    intensity = Component(Signal, ...)
-    x = Component(Signal, ...)
-    y = Component(Signal, ...)
-    exposure_time = Component(Signal, ..., kind='config')
-    sensor_temp = Component(Signal, ..., kind='omit')
-
-frobulator1 = Frobulator(...)
-frobulator2 = Frobulator(...)</code></pre>
-                    </section>
-                    <section>
                         Bluesky abstracts over hardware: a motor and temperature controller are both "things you can set".
                         <img src="assets/collection-overview.svg" style="background: white;" />
                     </section>
