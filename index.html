@@ -222,7 +222,109 @@
                         <img src="assets/collection-overview.svg" style="background: white;" />
                     </section>
                     <section>
-                        <p class="standout">Event Model: minimalist and extensible</p>
+                        <p>Layered design of Python libraries that are:</p>
+                        <ul>
+                            <li>co-developed and compatible...</li>
+                            <li>...but individually usable and useful</li>
+                            <li>with well-defined programmatic interfaces</li>
+                        </ul>
+                        <p><em>Looking at each component, from the bottom up....</em></p>
+                    </section>
+                    <section>
+                        Device Drivers and Underlying Control Layer(s)
+
+                        <p>You might have a pile of hardware that communicates over one or more of:</p>
+                        <ul>
+                            <li>
+                                <img src="assets/epics-logo.png" style="background: white; max-height: 200px; float: right;"/>
+                                Experimental Physics and Industrial Control System (EPICS)
+                            </li>
+                            <li>LabView</li>
+                            <li>Some other standard</li>
+                            <li>Some vendor-specific, one-off serial or socket protocol</li>
+                        </ul>
+                    </section>
+                    <section>
+                        Ophyd abstracts over the specific control layer.
+                        <img src="assets/collection-overview.svg" style="background: white;" />
+                    </section>
+                    <section>
+                        <p>Ophyd: a hardware abstraction layer</p>
+                        <ul>
+                            <li>Put the control layer behind a <strong>high-level interface</strong> with methods like <code>trigger()</code>, <code>read()</code>, and <code>set(...)</code>.</li>
+                            <li><strong>Group</strong> individual signals into logical "Devices" to be configured and used as one unit.</li>
+                            <li>Assign signals and devices <strong>human-friendly names</strong> that propagate into metadata.</li>
+                            <li><strong>Categorize</strong> signals by "kind" (primary reading, configuration, engineering/debugging).</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Example</p>
+                        <p>Suppose I want to control two new "frobulators". This ophyd code configures them for integration with bluesky.</p>
+                        <pre><code>from ophyd import Device, Signal, Component
+
+class Frobulator(Device):
+    intensity = Component(Signal, ...)
+    x = Component(Signal, ...)
+    y = Component(Signal, ...)
+    exposure_time = Component(Signal, ..., kind='config')
+    sensor_temp = Component(Signal, ..., kind='omit')
+
+frobulator1 = Frobulator(...)
+frobulator2 = Frobulator(...)</code></pre>
+                    </section>
+                    <section>
+                        Bluesky abstracts over hardware: a motor and temperature controller are both "things you can set".
+                        <img src="assets/collection-overview.svg" style="background: white;" />
+                    </section>
+                    <section>
+                        <p>BlueSky: an experiment specification and orchetsration engine</p>
+                        <ul>
+                            <li>Specify the logic of an experiment at a high level (e.g. <code>scan</code>). Employ low-level detail/control (e.g. <code>trigger</code>) only when you need it.</li>
+                            <li>First-class support for <strong>adaptive feedback</strong> between analysis and acquisition.</li>
+                            <li>Data is emitted in a <strong>streaming</strong> fashion in standard Python data structures.</li>
+                            <li>Pause/resume, robust error handling, and rich metadata capture are built in.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        The data/metadata emitted by BlueSky is persisted on disk in DataBroker.
+                        <img src="assets/collection-overview.svg" style="background: white;" />
+                    </section>
+                    <section>
+                        <p>DataBroker: rich search and access to saved data</p>
+                        <ul>
+                            <li>An API on top of a database (e.g. MongoDB)</li>
+                            <li>Search on arbitrary user-provided or automatically-captured metadata.</li>
+                            <li>Streaming-friendly (lazy)</li>
+                            <li>Exactly the same layout originally emitted by bluesky, so consumer code does not distinguish between "online" and saved data</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Key Goal of DataBroker: Keep I/O Concerns Separate!</p>
+                        <ul>
+                            <li>The system is <strong>unopinionated about data formats</strong>.</li>
+                            <li>Any file I/O happens transparently: the <strong>user never sees files</strong>, just gets data in memory (e.g. a numpy array).</li>
+                            <li>Your detector writes in a special format? Register a custom reader at runtime.</li>
+                            <li><strong>Import and exporters</strong> for some common file formats are built in. More are on the way....</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Event Model</h3>
+                    </section>
+                    <section>
+                        <p class="standout">Interfaces, not File Formats</p>
+                        <ul>
+                            <li>Unopinionated about file formats</li>
+                            <li>Separates I/O from science logic</li>
+                            <li>Plays well with streaming / cloud</li>
+                            <li>Separates semantics from on-disk serialization and transport mechanism</li>
+                            <li>Can change storage with no change to consumer code</li>
+                            <li>Live data and saved data can be fed into the same consumers ("streaming first!")</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Minimalist and Extensible</p>
                         <ul>
                             <li>Everything document has a unique ID and a timestamp.</li>
                             <li>Specific domains, facilities, collaborations, research groups can overlay schemas implementing their own standards
@@ -240,17 +342,6 @@
                     </section>
                     <section>
                         <img src="assets/event-model-example-3.svg" style="width: 900px; height: auto; background: white;"  />
-                    </section>
-                    <section>
-                        <p class="standout">Interfaces, not File Formats</p>
-                        <ul>
-                            <li>Unopinionated about file formats</li>
-                            <li>Separates I/O from science logic</li>
-                            <li>Plays well with streaming / cloud</li>
-                            <li>Separates semantics from on-disk serialization and transport mechanism</li>
-                            <li>Can change storage with no change to consumer code</li>
-                            <li>Live data and saved data can be fed into the same consumers ("streaming first!")</li>
-                        </ul>
                     </section>
                 </section>
                 <section>
