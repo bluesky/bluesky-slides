@@ -219,7 +219,7 @@
                         <img src="assets/collection-overview.svg" style="background: white;" />
                     </section>
                     <section>
-                        <p>Layered design of Python libraries that are:</p>
+                        <p class="standout">Layered design of Python libraries that are:</p>
                         <ul>
                             <li>co-developed and compatible...</li>
                             <li>...but individually usable and useful</li>
@@ -228,7 +228,7 @@
                         <p><em>Looking at each component, from the bottom up....</em></p>
                     </section>
                     <section>
-                        Device Drivers and Underlying Control Layer(s)
+                        <p class="standout">Device Drivers and Underlying Control Layer(s)</p>
 
                         <p>You might have a pile of hardware that communicates over one or more of:</p>
                         <ul>
@@ -246,7 +246,7 @@
                         <img src="assets/collection-overview.svg" style="background: white;" />
                     </section>
                     <section>
-                        <p>Ophyd: a hardware abstraction layer</p>
+                        <p class="standout">Ophyd: a hardware abstraction layer</p>
                         <ul>
                             <li>Put the control layer behind a <strong>high-level interface</strong> with methods like <code>trigger()</code>, <code>read()</code>, and <code>set(...)</code>.</li>
                             <li><strong>Group</strong> individual signals into logical "Devices" to be configured and used as one unit.</li>
@@ -259,7 +259,7 @@
                         <img src="assets/collection-overview.svg" style="background: white;" />
                     </section>
                     <section>
-                        <p>BlueSky: an experiment specification and orchetsration engine</p>
+                        <p class="standout">BlueSky: an experiment specification and orchetsration engine</p>
                         <ul>
                             <li>Specify the logic of an experiment in a hardware-abstracted way. Bluesky says a detector <em>should</em> be triggered; ophyd sorts out <em>how</em>.</li>
                             <li>First-class support for <strong>adaptive feedback</strong> between analysis and acquisition.</li>
@@ -272,7 +272,7 @@
                         <img src="assets/collection-overview.svg" style="background: white;" />
                     </section>
                     <section>
-                        <p>DataBroker: rich search and access to saved data</p>
+                        <p class="standout">DataBroker: rich search and access to saved data</p>
                         <ul>
                             <li>An API on top of a database (e.g. MongoDB)</li>
                             <li>Search on arbitrary user-provided or automatically-captured metadata.</li>
@@ -281,7 +281,7 @@
                         </ul>
                     </section>
                     <section>
-                        <p>Key Goal of DataBroker: Keep I/O Concerns Separate!</p>
+                        <p class="standout">Key Goal of DataBroker: Keep I/O Concerns Separate!</p>
                         <ul>
                             <li>The system is <strong>unopinionated about data formats</strong>.</li>
                             <li>Any file I/O happens transparently: the <strong>user never sees files</strong>, just gets data in memory (e.g. a numpy array).</li>
