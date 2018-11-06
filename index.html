@@ -289,6 +289,68 @@
                             <li><strong>Importers and exporters</strong> for some common file formats are built in. More are on the way....</li>
                         </ul>
                     </section>
+                    <section>
+                        <p>The most important aspect of this system is its well-defined protocols/interfaces between layers.</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Embrace Protocols</h3>
+                    </section>
+                    <section>
+                        <p class="standout">Important Protocols in this Architecture</p>
+                        <ul>
+                            <li>Numpy <code>__array__</code> protocol</li>
+                            <li>Python <code>__iter__</code> protocol</li>
+                            <li>Bluesky <code>Msg</code> protocol</li>
+                            <li>Ophyd&ndash;bluesky protocol</li>
+                            <li>Channel Access protocol</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Numpy <code>__array__</code> protocol</p>
+                        <ul>
+                            <li>Libraries like <em>scikit-image</em> and <em>scikit-learn</em> can share an in-memory array representation withou planning around each other.</li>
+                            <li><code>numpy.sum(dataframe)</code> works on a <code>pandas.DataFrame</code> even though pandas was created long after <code>numpy</code> because pandas implements the <code>__array__</code> protocol.</li>
+                            <li>Key point: Protocols enable interoperability and unforeseen applications.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Python <code>__iter__</code> protocol</p>
+                        <ul>
+                            <li>An "iterable" is arguably the central concept in Python.</li>
+                            <li>A bluesky experiment procedure ("plan") can be <em>any</em> iterable: a list, a generator (adaptive), or a custom class that implements the <code>__iter__</code> method.</li>
+                            <li>Key point: Rely on what an object can <em>do</em> not what it <em>is</em>.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Bluesky <code>Msg</code> protocol</p>
+                        <ul>
+                            <li>An experiment procedure is specified <em>descriptively</em> as a series of messages like:<br /><code>Msg('read', detector)</code></li>
+                            <li>An executor ("Run Engine") consumers the messages and does the actual I/O.</li>
+                            <li>This structure means that anyone can build <em>other</em> tools can consume the descriptive representation and do useful things:
+                                <ul>
+                                    <li>Time estimation</li>
+                                    <li>Limit-checking</li>
+                                    <li>Pre-visualization</li>
+                                </ul></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Ophyd&ndash;bluesky protocol</p>
+                        <ul>
+                            <li>Bluesky knows nothing about EPICS or any hardware communication.</li>
+                            <li>Bluesky expects objects with certain methods, comprising this ophyd&ndash;bluesky protocol, and only ever interacts with hardware through them.</li>
+                            <li>This makes it easy to drop in simulated hardware for real hardware, or to implement alternatives to ophyd that work the same with bluesky.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Channel Access protocol</p>
+                        <ul>
+                            <li>Another long-standing example of the power of protocols</li>
+                            <li>Abstracts over device drivers so that many clients &mdash; CSStudio, EDM, caput/get/monitor, Archiver, ... &mdash; can treat them alike</li>
+                        </ul>
+                    </section>
                 </section>
                 <section>
                     <section>
