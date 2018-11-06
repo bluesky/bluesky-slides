@@ -310,24 +310,24 @@
                     <section>
                         <p class="standout">Numpy <code>__array__</code> protocol</p>
                         <ul>
-                            <li>Libraries like <em>scikit-image</em> and <em>scikit-learn</em> can share an in-memory array representation withou planning around each other.</li>
+                            <li>Libraries like <em>scikit-image</em> and <em>scikit-learn</em> can share an in-memory array representation without planning around each other.</li>
                             <li><code>numpy.sum(dataframe)</code> works on a <code>pandas.DataFrame</code> even though pandas was created long after <code>numpy</code> because pandas implements the <code>__array__</code> protocol.</li>
-                            <li>Key point: Protocols enable interoperability and unforeseen applications.</li>
                         </ul>
+                        <p class="standout">Protocols enable interoperability<br />and unforeseen applications.</p>
                     </section>
                     <section>
                         <p class="standout">Python <code>__iter__</code> protocol</p>
                         <ul>
-                            <li>An "iterable" is arguably the central concept in Python.</li>
+                            <li>An "iterable" is a central concept in Python.</li>
                             <li>A bluesky experiment procedure ("plan") can be <em>any</em> iterable: a list, a generator (adaptive), or a custom class that implements the <code>__iter__</code> method.</li>
-                            <li>Key point: Rely on what an object can <em>do</em> not what it <em>is</em>.</li>
                         </ul>
+                        <p class="standout">Rely on what an object can <em>do</em> not what it <em>is</em>.</p>
                     </section>
                     <section>
                         <p class="standout">Bluesky <code>Msg</code> protocol</p>
                         <ul>
                             <li>An experiment procedure is specified <em>descriptively</em> as a series of messages like:<br /><code>Msg('read', detector)</code></li>
-                            <li>An executor ("Run Engine") consumers the messages and does the actual I/O.</li>
+                            <li>An consumer (the "Run Engine") iterates through the messages and does the actual I/O.</li>
                             <li>This structure means that anyone can build <em>other</em> tools can consume the descriptive representation and do useful things:
                                 <ul>
                                     <li>Time estimation</li>
