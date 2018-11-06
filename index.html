@@ -326,9 +326,9 @@
                     <section>
                         <p class="standout">Bluesky <code>Msg</code> protocol</p>
                         <ul>
-                            <li>An experiment procedure is specified <em>descriptively</em> as a series of messages like:<br /><code>Msg('read', detector)</code></li>
-                            <li>An consumer (the "Run Engine") iterates through the messages and does the actual I/O.</li>
-                            <li>This structure means that anyone can build <em>other</em> tools can consume the descriptive representation and do useful things:
+                            <li>An experiment procedure is specified <em>descriptively</em> as an iterable of messages like:<br /><code>Msg('read', detector)</code></li>
+                            <li>A consumer (the "Run Engine") iterates through the messages and does the actual I/O.</li>
+                            <li>This structure means that anyone can build <em>other</em> tools that consume this descriptive representation and do useful things:
                                 <ul>
                                     <li>Time estimation</li>
                                     <li>Limit-checking</li>
