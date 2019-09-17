@@ -263,6 +263,14 @@
                         </ul>
                     </section>
                     <section>
+                        <p class="standout">High Throughput</p>
+                        <ul>
+                            <li>Bluesky can process 30k messages/second ("message" = <code>trigger</code>, <code>read</code>, <code>save</code>, ...).</li>
+                            <li>Typically, the vast majority of its time is spent waiting for hardware to move or acquire.</li>
+                            <li>To go faster than that, use <code>kickoff</code> ("Go!") &mdash; <code>complete</code> ("Call me when you're done.") &mdash; <code>collect</code> ("Read out data asynchronously.").</li>
+                        </ul>
+                    </section>
+                    <section>
                         Suitcase encodes documents for storage or export.
                         <img src="assets/overview.png" style="background: white; width: 700px;" />
                     </section>
