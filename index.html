@@ -448,12 +448,92 @@ numpy.sum(df)</code></pre>
                     </section>
                 </section>
                 <section>
+                  <section>
+                    <h3>Adaptive experiments</h3>
+                  </section>
+                  <section>
+                    <p>Feedback Paths</p>
+                    <ul>
+                      <li> prompt / real-time analysis to steer experiment
+                      <li> "human-in-the-loop" </li>
+                      <li> "computer-in-the-loop"  </li>
+                      <li> data quality checks </li>
+                      </li>
+                    </ul>
+                  </section>
+                  <section>
+                    <p>Scales of Adaptive-ness</p>
+                    <ol class="arabic simple">
+                      <li>below <code class="literal notranslate"><span class="pre">bluesky</span></code> & <code class="literal notranslate"><span class="pre">ophyd</span></code> </li>
+                      <li>in <code class="literal notranslate"><span class="pre">bluesky</span></code> plans, but without generating <a class="reference external" href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event" title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code class="literal notranslate"><span class="pre">event</span></code></a></li>
+                      <li>providing feedback on a per-<a class="reference external" href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event" title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code class="literal notranslate"><span class="pre">event</span></code></a> basis</li>
+                      <li>providing feedback on a per-run / <a class="reference external" href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.start" title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code class="literal notranslate"><span class="pre">start</span></code></a> basis</li>
+                      <li>providing feedback across many runs</li>
+                      <li>asynchronous and decoupled feedback</li>
+</ol>
+                  </section>
+                  <section>
+                    <p>below <code class="literal notranslate"><span class="pre">bluesky</span></code> & <code class="literal notranslate"><span class="pre">ophyd</span></code> </p>
+                    <ul>
+                      <li> timescale: ≫ 10Hz </li>
+                      <li> very limited time budget for analysis </li>
+                      <li> very limited access to data </li>
+                      <li> tightly coupled to hardware (PID loop, FGPA) </li>
+                      <li> expensive to develop </li>
+                    </ul>
+                  </section>
+                  <section>
+                    <p> in <code class="literal notranslate"><span class="pre">bluesky</span></code> plans, but without generating <a class="reference external" href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event" title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code class="literal notranslate"><span class="pre">event</span></code></a></p>
+                    <ul>
+                      <li> timescale: 1-10Hz </li>
+                      <li> limited time budget for analysis </li>
+                      <li> limited access to data </li>
+                      <li> logic implemented in Python in acquisition process </li>
+                      <li> coupled to hardware </li>
+                      <li> can be used for filtering </li>
+                    </ul>
+                  </section>
+                  <section>
+                    <p> providing feedback on a per-<a class="reference external" href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event" title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code class="literal notranslate"><span class="pre">event</span></code></a> basis</p>
+                    <ul>
+                      <li> timescale: 1-5s </li>
+                      <li> modest time budget for analysis </li>
+                      <li> access to "single point" of data (& cache) </li>
+                      <li> run in or out of acquisition process </li>
+                    </ul>
+                  </section>
+                  <section>
+                    <p>providing feedback on a per-run / <a class="reference external" href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.start" title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code class="literal notranslate"><span class="pre">start</span></code></a> basis</p>
+                    <ul>
+                      <li> timescale: 5-60s </li>
+                      <li> modest time budget for analysis </li>
+                      <li> access to "full scan" data (& cache) </li>
+                      <li> run in or out of acquisition process </li>
+                    </ul>
+                  </section>
+                  <section>
+                    <p>providing feedback across many runs</p>
+                    <ul>
+                      <li> timescale: ∞ </li>
+                      <li> arbitarily compute budget </li>
+                      <li> access to all historical data </li>
+                      <li> muliti-modal </li>
+                    </ul>
+                  </section>
+                  <section>
+                    <p>asynchronous and decoupled feedback</p>
+                    <ul>
+                      <li> Is the beam up? </li>
+                      <li> Is the shutter open? </li>
+                      <li> Is the sample still in the beam? </li>
+                      <li> Do we have enough data on this sample? </li>
+                      <li> Is the sample toast? </li>
+                    </ul>
+                  </section>
+                </section>
+                <section>
                     <section>
                         <h3>Payoff:<br />Easy and robust integration with existing software</h3>
-                    </section>
-                    <section>
-                        <p>A Gaussian is fit to a stream of measured data using the Python library <em>lmfit</em> (from U. Chicago / APS).</p>
-                        <img src="assets/livefit-demo.gif" style="max-width: 500px; height: auto; background-color: white;" />
                     </section>
                     <section>
                         <p>Proof of concept:<br />In this scan, each step is determined adaptively in response to local slope.</p>
@@ -467,15 +547,19 @@ numpy.sum(df)</code></pre>
                         <img src="assets/skywalker-demo.gif" style="max-width: 500px; height: auto; background-color: white;" />
                     </section>
                     <section>
+                        <p>A stream of images from a linear detector is reconstructed into a volume using <em>tomopy</em> (APS).</p>
+                        <img src="assets/tomopy-demo.gif" style="max-width: 700px; height: auto; background-color: white;" />
+                        <p class="detail">It took one TomoPy developer and one Bluesky developer less than 20 minutes to write this.</p>
+                    </section>
+                    <section>
+                        <p>A Gaussian is fit to a stream of measured data using the Python library <em>lmfit</em> (from U. Chicago / APS).</p>
+                        <img src="assets/livefit-demo.gif" style="max-width: 500px; height: auto; background-color: white;" />
+                    </section>
+                    <section>
                         <p>The <a href="https://github.com/lbl-camera/Xi-cam">Xi-cam 2</a> GUI / plugin framework from CAMERA<br />
                         has adopted Bluesky's Event Model<br />
                         for its internal data structures.</p>
                         <img src="assets/xicam-screenshot.png" style="max-width: 700px; height: auto; background-color: white;" />
-                    </section>
-                    <section>
-                        <p>A stream of images from a linear detector is reconstructed into a volume using <em>tomopy</em> (APS).</p>
-                        <img src="assets/tomopy-demo.gif" style="max-width: 700px; height: auto; background-color: white;" />
-                        <p class="detail">It took one TomoPy developer and one Bluesky developer less than 20 minutes to write this.</p>
                     </section>
                     <section>
                         <p>Real-time Data Analysis at APS</p>
