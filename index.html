@@ -532,6 +532,111 @@ numpy.sum(df)</code></pre>
                   </section>
                 </section>
                 <section>
+                  <section>
+                    <h3>What is "Remote Data Acquisition"?</h3>
+                  </section>
+                  <section>
+                      <p>Components of Remote Acquisition</p>
+                      <ul>
+                          <li>Monitoring the instrument's status</li>
+                          <li>Invoking acquisition to collect data</li>
+                          <li>Reviewing / processing / interact with just-collected data</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Beamline Status</p>
+                      <ul>
+                          <li>Is the RunEngine running or idle?</li>
+                          <li>Is the shutter open?</li>
+                          <li>Is the ring up?</li>
+                          <li>Where are some key motors?</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Invoke Acquisition</p>
+                      <p>Levels of access:</p>
+                      <ol>
+                          <li>Physical access</li>
+                          <li>Direct access (read/write to PVs)</li>
+                          <li>Device-level access (Ophyd, Tango)</li>
+                          <li>Procedure-level access (bluesky plans)</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Review Data</p>
+                      <ul>
+                          <li>Live-updating visualizations of streaming data</li>
+                          <li>Browsable catalog of saved data</li>
+                          <li>Export / download</li>
+                          <li>Interactive exploration via Jupyter</li>
+                      </ul>
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>Bluesky RunEngine as a Service</h3>
+                  </section>
+                  <section>
+                      <ul>
+                          <li> Support remote and multi-tenant data acquisition </li>
+                          <li> Documentation: <a href="http://blueskyproject.io/bluesky-queueserver/">bluesky-queueserver</a> </li>
+                          <li> Highly resourced by NSLS-II Remote Experiments Task Force </li>
+                          <li> Under rapid development (~2 large PRs / week) </li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Traditional in-person, REPL-based control assumes:</p>
+                      <ul>
+                          <li>RunEngine, ophyd objects, CA connections all live in one process that user runs at local workstation</li>
+                          <li>User has exclusive control, enforced by physical presence</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>To enable remote operation we need to:</p>
+                      <ul>
+                          <li>Enforce exclusive control</li>
+                          <li>Run procedures without full access to the beamline</li>
+                          <li>Provide per-user profiles of what devices and procedures a user can access</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <img src="assets/bluesky-remote-architecture.svg" />
+                  </section>
+                  <section>
+                      DEMO VIDEO
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>Various UI Developments</h3>
+                  </section>
+                  <section>
+                      <p>Various institutions are building graphical user interfaces on Bluesky.</p>
+                  </section>
+                  <section>
+                      <p>pyStxm at Canadian Light Source (Russ Berg)</p>
+                      <ul>
+                          <li>Desktop-based (Qt)</li>
+                          <li>Formerly had custom scanning engine</li>
+                          <li>Refactored to use Bluesky</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <img src="assets/pyStxm/image004.png" />
+                  </section>
+                  <section>
+                      <img src="assets/pyStxm/image002.png" />
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>Bluesky Widgets</h3>
+                  </section>
+                  <section>
+                      ...
+                  </section>
+                </section>
+                <section>
                     <section>
                         <h3>Payoff:<br />Easy and robust integration with existing software</h3>
                     </section>
