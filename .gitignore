@@ -13,3 +13,4 @@ package-lock.json
 css/reveal.min.css
 js/reveal.min.js
 *.swp
+*.mkv
