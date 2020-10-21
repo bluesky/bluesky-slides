@@ -530,6 +530,187 @@ numpy.sum(df)</code></pre>
                       <li> Is the sample toast? </li>
                     </ul>
                   </section>
+                  <section>
+                      <p>Docs with theory and examples:</p>
+                      <p><a href="https://blueskyproject.io/bluesky-adaptive/index.html">bluesky/bluesky-adaptive</a>
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>What is Needed for Remote Data Acquisition?</h3>
+                  </section>
+                  <section>
+                      <p>Components of Remote Acquisition</p>
+                      <ul>
+                          <li>Monitoring the instrument's status</li>
+                          <li>Invoking acquisition to collect data</li>
+                          <li>Reviewing / processing / interact with just-collected data</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Beamline Status</p>
+                      <ul>
+                          <li>Is the RunEngine running or idle?</li>
+                          <li>Is the shutter open?</li>
+                          <li>Is the ring up?</li>
+                          <li>Where are some key motors?</li>
+                      </ul>
+                      <p class="standout">This is best handled by something that will re-publish from the control system (e.g. EPICS) using web-based OPIs, industry standard monitoring tools, or simple web pages.</p>
+                  </section>
+                  <section>
+                      <p>Invoke Acquisition</p>
+                      <p>Each level of access builds on the previous one:</p>
+                      <ol>
+                          <li>Physical, manual access (e.g. with a wrench)</li>
+                          <li>Direct access (read/write to PVs)</li>
+                          <li>Device-level access (Ophyd, Tango)</li>
+                          <li>Procedure-level access (bluesky plans)</li>
+                      </ol>
+                      <p class="standout">The procedure level is the one we target for remote access.</p>
+                  </section>
+                  <section>
+                      <p>Review Data</p>
+                      <ul>
+                          <li>Live-updating visualizations of streaming data</li>
+                          <li>Browsable catalog of saved data</li>
+                          <li>Export / download</li>
+                          <li>Interactive exploration via Jupyter</li>
+                      </ul>
+                      <p class="standout">This is addressed by web portals which likely need to be facility- or instrument-specific (but we can share components).</p>
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>Bluesky RunEngine as a Service</h3>
+                  </section>
+                  <section>
+                      <ul>
+                          <li> Support remote and multi-tenant data acquisition </li>
+                          <li> Documentation: <a href="https://blueskyproject.io/bluesky-queueserver/">bluesky-queueserver</a> </li>
+                          <li> Highly resourced by NSLS-II Remote Experiments Task Force </li>
+                          <li> Under rapid development (~2 large PRs / week) </li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Traditional in-person, REPL-based control assumes:</p>
+                      <ul>
+                          <li>RunEngine, ophyd objects, CA connections all live in one process that user runs at local workstation</li>
+                          <li>User has exclusive control, enforced by physical presence</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>To enable remote operation we need to:</p>
+                      <ul>
+                          <li>Enforce exclusive control</li>
+                          <li>Run procedures without full access to the beamline</li>
+                          <li>Provide per-user profiles of what devices and procedures a user can access</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <img src="assets/bluesky-remote-architecture.svg" />
+                  </section>
+                  <section>
+                      <img src="assets/remote-experiments-demo.gif" />
+                      <p>
+                      <a href="assets/remote-experiments-demo.mkv">Link to higher-resolution video</a>
+                      </p>
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>Survey of Community UI Developments</h3>
+                  </section>
+                  <section>
+                      <p>Various institutions are building graphical user interfaces on Bluesky.</p>
+                  </section>
+                  <section>
+                      <p>pyStxm at Canadian Light Source (Russ Berg)</p>
+                      <ul>
+                          <li>Desktop-based (Qt)</li>
+                          <li>Formerly had custom scanning engine</li>
+                          <li>Refactored to use Bluesky</li>
+                          <li><a href="https://github.com/RussBerg/pyStxm3">RussBerg/pyStxm3</a></li>
+                      </ul>
+                  </section>
+                  <section>
+                      <img src="assets/pyStxm/image004.png" />
+                  </section>
+                  <section>
+                      <img src="assets/pyStxm/image002.png" />
+                  </section>
+                  <section>
+                      <p>GUI for SAXS at Australian Synchrotron (Stephen Mudie)</p>
+                      <ul>
+                          <li>Web-based (React)</li>
+                          <li>Code partially available at <a href="https://github.com/AustralianSynchrotron/saxs_beamline_library_react">AustralianSynchrotron/saxs_beamline_library_react</a></li>
+                          <li>Plans to be fully open in a week or so</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <img src="assets/AS_SAXS_GUI/screenshot_from_call.png" />
+                  </section>
+                  <section>
+                      <p>GUI for COSMIC at Advanced Light Source (Xi-CAM Team)</p>
+                      <ul>
+                          <li>Desktop-based</li>
+                          <li>Plugin to the Xi-CAM framework (Qt)</li>
+                          <li><a href="https://github.com/Xi-CAM/Xi-cam.Acquire">Xi-CAM/Xi-cam.Acquire</a></li>
+                      </ul>
+                  </section>
+                  <section>
+                      <img src="assets/Xi-cam.Acquire/scan-parameters.png" />
+                  </section>
+                  <section>
+                      <img src="assets/Xi-cam.Acquire/image.png" />
+                  </section>
+                  <section>
+                      <p>Finally, various one-off solutions developed by beamline and/or Controls staff at NSLS-II</p>
+                      <ul>
+                          <li>"X-Live" (NSLS-II ISS & QAS)</li>
+                          <li>"xpdacq" (NSLS-II XPD & PDF)</li>
+                          <li>"XFP High-Throughput Multi-Sample Holder" (NSLS-II XFP)</li>
+                          <li>"BS-Studio" (NSLS-II ESM)</li>
+                      </ul>
+                      <p class="standout">We intend to guide a systematic refactor of these onto components from bluesky-queueserver and bluesky-widgets.</p>
+                  </section>
+                </section>
+                <section>
+                  <section>
+                    <h3>Bluesky Widgets</h3>
+                  </section>
+                  <section>
+                      <p>A new project aimed at sharing GUI components built on Bluesky interfaces</p>
+                      <p><a href="https://blueskyproject.io/bluesky-widgets/index.html">bluesky/bluesky-widgets</a>
+                  </section>
+                  <section>
+                      <p>Goals</p>
+                      <ul>
+                          <li>A component library, not an extensible application</li>
+                          <li>Ships runnable examples, but instruments should build their own</li>
+                          <li>Integrate with existing applications (napari, PyFAI, Xi-CAM, ...)</li>
+                          <li>All actions can be performed from a terminal or run headless</li>
+                          <li>Model is framework-agnostic. Front-ends will include Qt, Jupyter.</li>
+                      </ul>
+                  </section>
+                  <section>
+                      <p>Examples of integrating Data Broker search into existing software...</p>
+                  </section>
+                  <section>
+                      <img src="assets/bluesky-widgets/search-and-terminal.png" />
+                      <p class="standout">Model can be manipulated from IPython terminal</p>
+                  </section>
+                  <section>
+                      <img src="assets/bluesky-widgets/search-in-napari.png" />
+                      <p class="standout">Search Data Broker from napari (N-dimensional image viewer)</p>
+                  </section>
+                  <section>
+                      <img src="assets/bluesky-widgets/search-in-PyFAI.png" />
+                      <p class="standout">Search Data Broker from PyFAI (powder diffraction software)</p>
+                  </section>
+                  <section>
+                      <img src="assets/bluesky-widgets/search-in-Xi-CAM.png" />
+                      <p class="standout">Search Data Broker from Xi-CAM</p>
+                  </section>
                 </section>
                 <section>
                     <section>
