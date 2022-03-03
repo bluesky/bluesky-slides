@@ -70,6 +70,15 @@
                     <h3>Motivation</h3>
                 </section>
                 <section>
+                    <p class="standout">Build software that enables collaboration and specialization</p>
+                    <ul>
+                        <li>Each beamline is one of a kind by design, so no software can be a complete solution for
+                            everyone.</li>
+                        <li>Aim to enable beamlines to share yet also support their unique needs.</li>
+                        <li>Use software design patterns that encourage building on a shared core.</li>
+                    </ul>
+                </section>
+                <section>
                     <p class="standout">Bluesky is designed in service to data analysis</p>
                     <p>When analyzing data we want....</p>
                     <ul>
@@ -83,7 +92,24 @@
                     </ul>
                 </section>
                 <section>
-                    <p class="standout">Free, open-source scientific software is rapidly growing</p>
+                    <p class="standout">Bluesky may be used from IPython or from graphical user interfaces</p>
+                    <ul>
+                        <li> At first we targeted command-line usage in <strong>IPython</strong>, thinking of users
+                            coming from SPEC.</li>
+                        <li>Staff at our facility and at other facilities have built their own graphical applications
+                            that interface to parts of Bluesky. (See following slides.)</li>
+                        <li>We are developing a <strong>toolbox of reusable components for building graphical
+                                interfaces</strong> for data acquisition, search, access, and visualization, supporting:
+                            <ul>
+                                <li>Desktop applications</li>
+                                <li>Jupyter</li>
+                                <li>Web applications</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="standout">Bluesky is a bridge to the open-source ecosystem</p>
                     <img src="assets/scipy-ecosystem.png" style="max-width: 70%; height: auto;" />
                     <p class="credit">Figure Credit: "The Unexpected Effectiveness of Python in Science", PyCon 2017</p>
                 </section>
@@ -94,43 +120,51 @@
                         https://stackoverflow.blog/2017/09/06/incredible-growth-python/</p>
                 </section>
                 <section>
-                    <p>Bluesky is designed for the long term</p>
+                    <p class="standout">Bluesky is designed for the long term</p>
                     <ul>
                         <li>Make it easy to keep <strong>file-reading and -writing code separate from scientific
                                 code</strong>.</li>
                         <li>Support <strong>streaming</strong> (live-updating) visualization and processing, and
                             <strong>adaptive experiment steering</strong>.
                         </li>
-                        <li>Be <strong>cloud</strong>-friendly.</li>
-                        <li>...But also make it possible to opt out of that to keep things simple.</li>
+                        <li>Integrate well with web technologies and be <strong>cloud</strong>-friendly.</li>
+                        <li>But also meet users where they are!</li>
                     </ul>
                 </section>
                 <section>
                     <p class="standout">Bluesky has individually useful core components</p>
                     <ul>
                         <li><strong>Bluesky Run Engine</strong>: experiment orchestration and data acquisition
-                          <ul>
-                            <li>Emits data and metadata in a streaming fashion as it's available during acquisition</li>
-                            <li>Centrally manages any interruptions (pause/resume), failure modes, etc.</li>
-                        </ul></li>
-                    
+                            <ul>
+                                <li>Emits data and metadata in a streaming fashion as it's available during acquisition
+                                </li>
+                                <li>Centrally manages any interruptions (pause/resume), failure modes, etc.</li>
+                            </ul>
+                        </li>
+
                         <li><strong>Bluesky Plans</strong>: experiment sequences (e.g. scans)
-                          <ul>
-                            <li>Designed with adaptive sequences in mind from the start</li>
-                            <li>Leaves room for hardware-triggered scanning — interesting new work happening here</li>
-                        </ul></li>
-                    
+                            <ul>
+                                <li>Designed with adaptive sequences in mind from the start</li>
+                                <li>Leaves room for hardware-triggered scanning — interesting new work happening here
+                                </li>
+                            </ul>
+                        </li>
+
                         <li><strong>Ophyd</strong>: interface to hardware</li>
                         <li><strong>Suitcases</strong>
-                          <ul>
-                            <li>streaming export to popular formats (e.g. CSV, TIFF, …. NeXus support in progress)</li>
-                            <li>or streaming save lossless storage (e.g. MongoDB, msgpack — plus external large arrays)</li>
-                        </ul></li>
-                        <li><strong>Databroker</strong>: search and access saved data</li>
-                      </ul>
+                            <ul>
+                                <li>streaming export to popular formats (e.g. CSV, TIFF, …. NeXus support in progress)
+                                </li>
+                                <li>or streaming save lossless storage (e.g. MongoDB, msgpack — plus external large
+                                    arrays)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tiled and Databroker</strong>: search and access saved data</li>
+                    </ul>
                 </section>
                 <section>
-                    <p class="standout">Other facilities have adopted Bluesky piecemeal, adapting, extending, or replacing components to
+                    <p class="standout">Other facilities have adopted Bluesky piecemeal, adapting, extending, or
+                        replacing components to
                         meet their requirements.</p>
                     <img src="assets/tools-on-pegboard.png" style="width: 70%; height: auto;" />
                 </section>
@@ -277,7 +311,10 @@
             </section>
             <section>
                 <section>
-                    <p class="standout">Bluesky is designed in service to data analys.s</p>
+                    <h3>Design Goals</h3>
+                    <p>both technical and sociological</p>
+                    <p>for an end-to-end data acquisition and analysis solution that leverages data science libraries
+                    </p>
                 </section>
                 <section>
                     <p class="standout">Technical Goals</p>
@@ -304,8 +341,28 @@
                     </ul>
                 </section>
                 <section>
-                    <p class="standout">It's working!</p>
-                    <img src="assets/pilot-group-photo.png" style="width: 800px;" />
+                    <p class="standout">Bluesky is designed for Distributed Collaboration</p>
+                    <ul>
+                        <li>Facilities and instruments within a facility can share <strong>common components</strong>
+                            and benefit from a share knowledge base and a shared code base</li>
+                        <li>While also having <strong>room to innovate and specialize</strong> to suit their own
+                            priorities and timelines.</li>
+                        <li>The scientific Python community is an example of how this can work well.</li>
+                        <li>Use the parts of Bluesky that work for you <em>a la carte</em>, <strong>extend</strong>
+                            them, or
+                            <strong>replace</strong> them.
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="standout">Bluesky is designed for Distributed Collaboration (cont.)</p>
+                    <ul>
+                        <li>This is not an all-or-nothing framework that you have to buy into; it's a
+                            <strong>mini-ecosystem of co-developed but individually useful tools</strong> that you can
+                            build on.
+                        </li>
+                        <li>It's all in Python. Some beamline staff and partner users have built on it.</li>
+                    </ul>
                 </section>
             </section>
             <section>
@@ -516,6 +573,19 @@ numpy.sum(df)</code></pre>
                     </ul>
                 </section>
                 <section>
+                    <p>Build a lasting collaboration</p>
+                    <ul>
+                        <li><a href="https://github.com/bluesky/governance">Governance model (in process)</a></li>
+                        <li><strong>Maintainers</strong>: per repo, make day-to-day decisions and set processes as
+                            appropriate to the repo</li>
+                        <li><strong>Technical Steering Committee</strong>: arbitrate when maintainers cannot reach rough
+                            consensus</li>
+                        <li><strong>Project Advisory Board</strong>: management-level stakeholders, oversee big-picture
+                            priorities</li>
+                        <li>Currently in process of assembling these groups</li>
+                    </ul>
+                </section>
+                <section>
                     <p>Automated tests are essential</p>
                     <p class="standout">They enable people to try new ideas with confidence.</p>
                     <ul>
@@ -581,343 +651,384 @@ numpy.sum(df)</code></pre>
             </section>
             <section>
                 <section>
-                    <h3>Adaptive experiments</h3>
+                    <h3>Fly Scans</h3>
                 </section>
                 <section>
-                    <p>Feedback Paths</p>
                     <ul>
-                        <li> prompt / real-time analysis to steer experiment
-                        <li> "human-in-the-loop" </li>
-                        <li> "computer-in-the-loop" </li>
-                        <li> data quality checks </li>
+                        <li>For high performance fly scanning, coordination is needed "below" Bluesky in hardware.</li>
+                        <li>Bluesky simply provide a way to:
+                            <ul>
+                                <li>Configure</li>
+                                <li>Start ("Kickoff")</li>
+                                <li>Incrementally collect data ("Collect")</li>
+                                <li>Initiate or await completion ("Complete")</li>
+                            </ul>
                         </li>
                     </ul>
                 </section>
                 <section>
-                    <p>Scales of Adaptive-ness</p>
-                    <ol class="arabic simple">
-                        <li>below <code class="literal notranslate"><span class="pre">bluesky</span></code> & <code
-                                class="literal notranslate"><span class="pre">ophyd</span></code> </li>
-                        <li>in <code class="literal notranslate"><span class="pre">bluesky</span></code> plans, but
-                            without generating <a class="reference external"
+                    <ul>
+                        <li>The status quo in Bluesky is very coarse.</li>
+                        <li>Highly flexible (good place to start...)</li>
+                        <li>But each fly scan application is built from scratch (leads to duplicated efforts)</li>
+                    </ul>
+                </section>
+                <section>
+                    <p>This is an area of very active development is Bluesky.</p>
+                    <p>Coordinated efforts underway at:</p>
+                    <ul>
+                        <li>Diamond Light Source</li>
+                        <li>Australian Synchrotron</li>
+                        <li>NSLS0II</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Diamond has invested a decade of research into fly-scanning in previous Python projects.
+                        </li>
+                        <li>Prototype from Diamond applying this expertise in a Bluesky-compatible way: <a
+                                href="https://github.com/thomascobb/bluefly">Bluesky</a></li>
+                        <li>Work in progress to integrate this with Bluesky itself: <a
+                                href="https://github.com/bluesky/bluesky/pull/1502">bluesky PR#1502</a></li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                    <section>
+                        <h3>Adaptive experiments</h3>
+                    </section>
+                    <section>
+                        <p>Feedback Paths</p>
+                        <ul>
+                            <li> prompt / real-time analysis to steer experiment
+                            <li> "human-in-the-loop" </li>
+                            <li> "computer-in-the-loop" </li>
+                            <li> data quality checks </li>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Scales of Adaptive-ness</p>
+                        <ol class="arabic simple">
+                            <li>below <code class="literal notranslate"><span class="pre">bluesky</span></code>
+                                & <code class="literal notranslate"><span class="pre">ophyd</span></code> </li>
+                            <li>in <code class="literal notranslate"><span class="pre">bluesky</span></code>
+                                plans, but
+                                without generating <a class="reference external"
+                                    href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event"
+                                    title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
+                                        class="literal notranslate"><span class="pre">event</span></code></a>
+                            </li>
+                            <li>providing feedback on a per-<a class="reference external"
+                                    href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event"
+                                    title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
+                                        class="literal notranslate"><span class="pre">event</span></code></a>
+                                basis</li>
+                            <li>providing feedback on a per-run / <a class="reference external"
+                                    href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.start"
+                                    title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
+                                        class="literal notranslate"><span class="pre">start</span></code></a>
+                                basis</li>
+                            <li>providing feedback across many runs</li>
+                            <li>asynchronous and decoupled feedback</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <p>below <code class="literal notranslate"><span class="pre">bluesky</span></code> &
+                            <code class="literal notranslate"><span class="pre">ophyd</span></code>
+                        </p>
+                        <ul>
+                            <li> timescale: ≫ 10Hz </li>
+                            <li> very limited time budget for analysis </li>
+                            <li> very limited access to data </li>
+                            <li> tightly coupled to hardware (PID loop, FGPA) </li>
+                            <li> expensive to develop </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p> in <code class="literal notranslate"><span class="pre">bluesky</span></code> plans,
+                            but without
+                            generating <a class="reference external"
                                 href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event"
                                 title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
-                                    class="literal notranslate"><span class="pre">event</span></code></a></li>
-                        <li>providing feedback on a per-<a class="reference external"
+                                    class="literal notranslate"><span class="pre">event</span></code></a></p>
+                        <ul>
+                            <li> timescale: 1-10Hz </li>
+                            <li> limited time budget for analysis </li>
+                            <li> limited access to data </li>
+                            <li> logic implemented in Python in acquisition process </li>
+                            <li> coupled to hardware </li>
+                            <li> can be used for filtering </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p> providing feedback on a per-<a class="reference external"
                                 href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event"
                                 title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
-                                    class="literal notranslate"><span class="pre">event</span></code></a> basis</li>
-                        <li>providing feedback on a per-run / <a class="reference external"
+                                    class="literal notranslate"><span class="pre">event</span></code></a> basis
+                        </p>
+                        <ul>
+                            <li> timescale: 1-5s </li>
+                            <li> modest time budget for analysis </li>
+                            <li> access to "single point" of data (& cache) </li>
+                            <li> run in or out of acquisition process </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>providing feedback on a per-run / <a class="reference external"
                                 href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.start"
                                 title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
-                                    class="literal notranslate"><span class="pre">start</span></code></a> basis</li>
-                        <li>providing feedback across many runs</li>
-                        <li>asynchronous and decoupled feedback</li>
-                    </ol>
+                                    class="literal notranslate"><span class="pre">start</span></code></a> basis
+                        </p>
+                        <ul>
+                            <li> timescale: 5-60s </li>
+                            <li> modest time budget for analysis </li>
+                            <li> access to "full scan" data (& cache) </li>
+                            <li> run in or out of acquisition process </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>providing feedback across many runs</p>
+                        <ul>
+                            <li> timescale: ∞ </li>
+                            <li> arbitarily compute budget </li>
+                            <li> access to all historical data </li>
+                            <li> muliti-modal </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>asynchronous and decoupled feedback</p>
+                        <ul>
+                            <li> Is the beam up? </li>
+                            <li> Is the shutter open? </li>
+                            <li> Is the sample still in the beam? </li>
+                            <li> Do we have enough data on this sample? </li>
+                            <li> Is the sample toast? </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Docs with theory and examples:</p>
+                        <p><a href="https://blueskyproject.io/bluesky-adaptive/index.html">bluesky/bluesky-adaptive</a>
+                    </section>
                 </section>
                 <section>
-                    <p>below <code class="literal notranslate"><span class="pre">bluesky</span></code> & <code
-                            class="literal notranslate"><span class="pre">ophyd</span></code> </p>
-                    <ul>
-                        <li> timescale: ≫ 10Hz </li>
-                        <li> very limited time budget for analysis </li>
-                        <li> very limited access to data </li>
-                        <li> tightly coupled to hardware (PID loop, FGPA) </li>
-                        <li> expensive to develop </li>
-                    </ul>
+                    <section>
+                        <h3>"Queue server": An Editable Control Queue</h3>
+                    </section>
+                    <section>
+                        <p class="standout">Bluesky Queue Server</p>
+                        <ul>
+                            <li> Support remote and multi-tenant data acquisition </li>
+                            <li> Documentation: <a
+                                    href="https://blueskyproject.io/bluesky-queueserver/">bluesky-queueserver</a>
+                            </li>
+                            <li>Has been used for user experiments</li>
+                            <li>Still under rapid development</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="standout">Bluesky's first target was users coming from SPEC</p>
+                        <ul>
+                            <li>Primarly an interactive, human-in-the-loop workflow</li>
+                            <li>REPL (Terminal) based</li>
+                            <li>User has exclusive control, enforced by physical presence</li>
+                        </ul>
+                        <img src="assets/repl.png" />
+                    </section>
+                    <section>
+                        <p class="standout">New Capability: Editable Control Queue</p>
+                        <ul>
+                            <li>Provides an editable queue of Bluesky plans to ru​n</li>
+                            <li>All the same Bluesky plans (experiment procedures) work​</li>
+                            <li>All the same Ophyd devices work​</li>
+                            <li>Can be easily populated from a user's Excel spreadsheet​</li>
+                            <li>You can safely mutate—rearrange and edit items—during acquisition​</li>
+                            <li>Well suited to graphical interfaces​</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="assets/qserver-web.png" />
+                    </section>
+                    <section>
+                        <img src="assets/qserver-desktop.png" />
+                    </section>
+                    <section>
+                        <p class="standout">Separation between user app and queue server</p>
+                        <ul>
+                            <li><strong>If app is closed or crashes, acquisition continues</strong>. Just
+                                restart app to
+                                reconnect.</li>
+                            <li>The app can provide access controls
+                                <ul>
+                                    <li>Guiderails (avoid too many options)</li>
+                                    <li>Security</li>
+                                </ul>
+                            </li>
+                            <li>App can run on different machine from queue</li>
+                            <li>Many client programs can be used simultaneously to monitor or control the queue
+                                (web,
+                                desktop GUI, commandline)</li>
+                        </ul>
+                    </section>
                 </section>
                 <section>
-                    <p> in <code class="literal notranslate"><span class="pre">bluesky</span></code> plans, but without
-                        generating <a class="reference external"
-                            href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event"
-                            title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
-                                class="literal notranslate"><span class="pre">event</span></code></a></p>
-                    <ul>
-                        <li> timescale: 1-10Hz </li>
-                        <li> limited time budget for analysis </li>
-                        <li> limited access to data </li>
-                        <li> logic implemented in Python in acquisition process </li>
-                        <li> coupled to hardware </li>
-                        <li> can be used for filtering </li>
-                    </ul>
+                    <section>
+                        <h3>Survey of Community UI Developments</h3>
+                    </section>
+                    <section>
+                        <p>Various institutions are building graphical user interfaces on Bluesky.</p>
+                    </section>
+                    <section>
+                        <p>pyStxm at Canadian Light Source (Russ Berg)</p>
+                        <ul>
+                            <li>Desktop-based (Qt)</li>
+                            <li>Formerly had custom scanning engine</li>
+                            <li>Refactored to use Bluesky</li>
+                            <li><a href="https://github.com/RussBerg/pyStxm3">RussBerg/pyStxm3</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="assets/pyStxm/image004.png" />
+                    </section>
+                    <section>
+                        <img src="assets/pyStxm/image002.png" />
+                    </section>
+                    <section>
+                        <p>GUI for SAXS at Australian Synchrotron (Stephen Mudie)</p>
+                        <ul>
+                            <li>Web-based (React)</li>
+                            <li>Code partially available at <a
+                                    href="https://github.com/AustralianSynchrotron/saxs_beamline_library_react">AustralianSynchrotron/saxs_beamline_library_react</a>
+                            </li>
+                            <li>Plans to be fully open in a week or so</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="assets/AS_SAXS_GUI/screenshot_from_call.png" />
+                    </section>
+                    <section>
+                        <p>GUI for COSMIC at Advanced Light Source (Xi-CAM Team)</p>
+                        <ul>
+                            <li>Desktop-based</li>
+                            <li>Plugin to the Xi-CAM framework (Qt)</li>
+                            <li><a href="https://github.com/Xi-CAM/Xi-cam.Acquire">Xi-CAM/Xi-cam.Acquire</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="assets/Xi-cam.Acquire/scan-parameters.png" />
+                    </section>
+                    <section>
+                        <img src="assets/Xi-cam.Acquire/image.png" />
+                    </section>
+                    <section>
+                        <p>Finally, various one-off solutions developed by beamline and/or Controls staff at
+                            NSLS-II</p>
+                        <ul>
+                            <li>"X-Live" (NSLS-II ISS & QAS)</li>
+                            <li>"xpdacq" (NSLS-II XPD & PDF)</li>
+                            <li>"XFP High-Throughput Multi-Sample Holder" (NSLS-II XFP)</li>
+                            <li>"BS-Studio" (NSLS-II ESM)</li>
+                        </ul>
+                        <p class="standout">We intend to guide a systematic refactor of these onto components
+                            from
+                            bluesky-queueserver and bluesky-widgets.</p>
+                    </section>
                 </section>
                 <section>
-                    <p> providing feedback on a per-<a class="reference external"
-                            href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.event"
-                            title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
-                                class="literal notranslate"><span class="pre">event</span></code></a> basis</p>
-                    <ul>
-                        <li> timescale: 1-5s </li>
-                        <li> modest time budget for analysis </li>
-                        <li> access to "single point" of data (& cache) </li>
-                        <li> run in or out of acquisition process </li>
-                    </ul>
+                    <section>
+                        <h3>Bluesky Widgets</h3>
+                    </section>
+                    <section>
+                        <p>A new project aimed at sharing GUI components built on Bluesky interfaces</p>
+                        <p><a href="https://blueskyproject.io/bluesky-widgets/index.html">bluesky/bluesky-widgets</a>
+                    </section>
+                    <section>
+                        <p>Goals</p>
+                        <ul>
+                            <li>A component library, not an extensible application</li>
+                            <li>Ships runnable examples, but instruments should build their own</li>
+                            <li>Integrate with existing applications (napari, PyFAI, Xi-CAM, ...)</li>
+                            <li>All actions can be performed from a terminal or run headless</li>
+                            <li>Model is framework-agnostic. Front-ends will include Qt, Jupyter.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Examples of integrating Data Broker search into existing software...</p>
+                    </section>
+                    <section>
+                        <img src="assets/bluesky-widgets/search-and-terminal.png" />
+                        <p class="standout">Model can be manipulated from IPython terminal</p>
+                    </section>
+                    <section>
+                        <img src="assets/bluesky-widgets/search-in-napari.png" />
+                        <p class="standout">Search Data Broker from napari (N-dimensional image viewer)</p>
+                    </section>
+                    <section>
+                        <img src="assets/bluesky-widgets/search-in-PyFAI.png" />
+                        <p class="standout">Search Data Broker from PyFAI (powder diffraction software)</p>
+                    </section>
+                    <section>
+                        <img src="assets/bluesky-widgets/search-in-Xi-CAM.png" />
+                        <p class="standout">Search Data Broker from Xi-CAM</p>
+                    </section>
                 </section>
                 <section>
-                    <p>providing feedback on a per-run / <a class="reference external"
-                            href="https://blueskyproject.io/event-model/api.html#event_model.DocumentNames.start"
-                            title="(in Bluesky Event Model v1.15.2.post5+g842bdb8)"><code
-                                class="literal notranslate"><span class="pre">start</span></code></a> basis</p>
-                    <ul>
-                        <li> timescale: 5-60s </li>
-                        <li> modest time budget for analysis </li>
-                        <li> access to "full scan" data (& cache) </li>
-                        <li> run in or out of acquisition process </li>
-                    </ul>
+                    <section>
+                        <h3>Payoff:<br />Easy and robust integration with existing software</h3>
+                    </section>
+                    <section>
+                        <p>Proof of concept:<br />In this scan, each step is determined adaptively in response
+                            to local
+                            slope.</p>
+                        <img src="assets/adaptive-scan-demo.gif"
+                            style="max-width: 500px; height: auto; background-color: white;" />
+                        <p class="detail">The system is designed to make fast feedback easy to write.</p>
+                    </section>
+                    <section>
+                        <p>LCLS's <a href="https://pswww.slac.stanford.edu/swdoc/releases/skywalker/">Skywalker</a>
+                            project builds on this to automatically deliver the photon beam to a
+                            number of experimental hutches at LCLS.</p>
+                        <img src="assets/skywalker-demo.gif"
+                            style="max-width: 500px; height: auto; background-color: white;" />
+                    </section>
+                    <section>
+                        <p>A stream of images from a linear detector is reconstructed into a volume using
+                            <em>tomopy</em>
+                            (APS).
+                        </p>
+                        <img src="assets/tomopy-demo.gif"
+                            style="max-width: 700px; height: auto; background-color: white;" />
+                        <p class="detail">It took one TomoPy developer and one Bluesky developer less than 20
+                            minutes to
+                            write this.</p>
+                    </section>
+                    <section>
+                        <p>A Gaussian is fit to a stream of measured data using the Python library
+                            <em>lmfit</em> (from U.
+                            Chicago / APS).
+                        </p>
+                        <img src="assets/livefit-demo.gif"
+                            style="max-width: 500px; height: auto; background-color: white;" />
+                    </section>
+                    <section>
+                        <p>The <a href="https://github.com/lbl-camera/Xi-cam">Xi-cam 2</a> GUI / plugin
+                            framework from
+                            CAMERA<br />
+                            has adopted Bluesky's Event Model<br />
+                            for its internal data structures.</p>
+                        <img src="assets/xicam-screenshot.png"
+                            style="max-width: 700px; height: auto; background-color: white;" />
+                    </section>
+                    <section>
+                        <p>Real-time Data Analysis at APS</p>
+                        <img src="assets/aps-shale-reconstruction.png" style="max-width: 700px; height: auto;" />
+                        <p class="detail">Data is streamed from APS to Argonne Leadership Compute Facility.
+                            Results are
+                            immediately visualized at APS.</p>
+                    </section>
                 </section>
-                <section>
-                    <p>providing feedback across many runs</p>
-                    <ul>
-                        <li> timescale: ∞ </li>
-                        <li> arbitarily compute budget </li>
-                        <li> access to all historical data </li>
-                        <li> muliti-modal </li>
-                    </ul>
-                </section>
-                <section>
-                    <p>asynchronous and decoupled feedback</p>
-                    <ul>
-                        <li> Is the beam up? </li>
-                        <li> Is the shutter open? </li>
-                        <li> Is the sample still in the beam? </li>
-                        <li> Do we have enough data on this sample? </li>
-                        <li> Is the sample toast? </li>
-                    </ul>
-                </section>
-                <section>
-                    <p>Docs with theory and examples:</p>
-                    <p><a href="https://blueskyproject.io/bluesky-adaptive/index.html">bluesky/bluesky-adaptive</a>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h3>What is Needed for Remote Data Acquisition?</h3>
-                </section>
-                <section>
-                    <p>Components of Remote Acquisition</p>
-                    <ul>
-                        <li>Monitoring the instrument's status</li>
-                        <li>Invoking acquisition to collect data</li>
-                        <li>Reviewing / processing / interact with just-collected data</li>
-                    </ul>
-                </section>
-                <section>
-                    <p>Beamline Status</p>
-                    <ul>
-                        <li>Is the RunEngine running or idle?</li>
-                        <li>Is the shutter open?</li>
-                        <li>Is the ring up?</li>
-                        <li>Where are some key motors?</li>
-                    </ul>
-                    <p class="standout">This is best handled by something that will re-publish from the control system
-                        (e.g. EPICS) using web-based OPIs, industry standard monitoring tools, or simple web pages.</p>
-                </section>
-                <section>
-                    <p>Invoke Acquisition</p>
-                    <p>Each level of access builds on the previous one:</p>
-                    <ol>
-                        <li>Physical, manual access (e.g. with a wrench)</li>
-                        <li>Direct access (read/write to PVs)</li>
-                        <li>Device-level access (Ophyd, Tango)</li>
-                        <li>Procedure-level access (bluesky plans)</li>
-                    </ol>
-                    <p class="standout">The procedure level is the one we target for remote access.</p>
-                </section>
-                <section>
-                    <p>Review Data</p>
-                    <ul>
-                        <li>Live-updating visualizations of streaming data</li>
-                        <li>Browsable catalog of saved data</li>
-                        <li>Export / download</li>
-                        <li>Interactive exploration via Jupyter</li>
-                    </ul>
-                    <p class="standout">This is addressed by web portals which likely need to be facility- or
-                        instrument-specific (but we can share components).</p>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h3>Bluesky RunEngine as a Service</h3>
-                </section>
-                <section>
-                    <ul>
-                        <li> Support remote and multi-tenant data acquisition </li>
-                        <li> Documentation: <a
-                                href="https://blueskyproject.io/bluesky-queueserver/">bluesky-queueserver</a> </li>
-                        <li> Highly resourced by NSLS-II Remote Experiments Task Force </li>
-                        <li> Under rapid development (~2 large PRs / week) </li>
-                    </ul>
-                </section>
-                <section>
-                    <p>Traditional in-person, REPL-based control assumes:</p>
-                    <ul>
-                        <li>RunEngine, ophyd objects, CA connections all live in one process that user runs at local
-                            workstation</li>
-                        <li>User has exclusive control, enforced by physical presence</li>
-                    </ul>
-                </section>
-                <section>
-                    <p>To enable remote operation we need to:</p>
-                    <ul>
-                        <li>Enforce exclusive control</li>
-                        <li>Run procedures without full access to the beamline</li>
-                        <li>Provide per-user profiles of what devices and procedures a user can access</li>
-                    </ul>
-                </section>
-                <section>
-                    <img src="assets/bluesky-remote-architecture.svg" />
-                </section>
-                <section>
-                    <img src="assets/remote-experiments-demo.gif" />
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h3>Survey of Community UI Developments</h3>
-                </section>
-                <section>
-                    <p>Various institutions are building graphical user interfaces on Bluesky.</p>
-                </section>
-                <section>
-                    <p>pyStxm at Canadian Light Source (Russ Berg)</p>
-                    <ul>
-                        <li>Desktop-based (Qt)</li>
-                        <li>Formerly had custom scanning engine</li>
-                        <li>Refactored to use Bluesky</li>
-                        <li><a href="https://github.com/RussBerg/pyStxm3">RussBerg/pyStxm3</a></li>
-                    </ul>
-                </section>
-                <section>
-                    <img src="assets/pyStxm/image004.png" />
-                </section>
-                <section>
-                    <img src="assets/pyStxm/image002.png" />
-                </section>
-                <section>
-                    <p>GUI for SAXS at Australian Synchrotron (Stephen Mudie)</p>
-                    <ul>
-                        <li>Web-based (React)</li>
-                        <li>Code partially available at <a
-                                href="https://github.com/AustralianSynchrotron/saxs_beamline_library_react">AustralianSynchrotron/saxs_beamline_library_react</a>
-                        </li>
-                        <li>Plans to be fully open in a week or so</li>
-                    </ul>
-                </section>
-                <section>
-                    <img src="assets/AS_SAXS_GUI/screenshot_from_call.png" />
-                </section>
-                <section>
-                    <p>GUI for COSMIC at Advanced Light Source (Xi-CAM Team)</p>
-                    <ul>
-                        <li>Desktop-based</li>
-                        <li>Plugin to the Xi-CAM framework (Qt)</li>
-                        <li><a href="https://github.com/Xi-CAM/Xi-cam.Acquire">Xi-CAM/Xi-cam.Acquire</a></li>
-                    </ul>
-                </section>
-                <section>
-                    <img src="assets/Xi-cam.Acquire/scan-parameters.png" />
-                </section>
-                <section>
-                    <img src="assets/Xi-cam.Acquire/image.png" />
-                </section>
-                <section>
-                    <p>Finally, various one-off solutions developed by beamline and/or Controls staff at NSLS-II</p>
-                    <ul>
-                        <li>"X-Live" (NSLS-II ISS & QAS)</li>
-                        <li>"xpdacq" (NSLS-II XPD & PDF)</li>
-                        <li>"XFP High-Throughput Multi-Sample Holder" (NSLS-II XFP)</li>
-                        <li>"BS-Studio" (NSLS-II ESM)</li>
-                    </ul>
-                    <p class="standout">We intend to guide a systematic refactor of these onto components from
-                        bluesky-queueserver and bluesky-widgets.</p>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h3>Bluesky Widgets</h3>
-                </section>
-                <section>
-                    <p>A new project aimed at sharing GUI components built on Bluesky interfaces</p>
-                    <p><a href="https://blueskyproject.io/bluesky-widgets/index.html">bluesky/bluesky-widgets</a>
-                </section>
-                <section>
-                    <p>Goals</p>
-                    <ul>
-                        <li>A component library, not an extensible application</li>
-                        <li>Ships runnable examples, but instruments should build their own</li>
-                        <li>Integrate with existing applications (napari, PyFAI, Xi-CAM, ...)</li>
-                        <li>All actions can be performed from a terminal or run headless</li>
-                        <li>Model is framework-agnostic. Front-ends will include Qt, Jupyter.</li>
-                    </ul>
-                </section>
-                <section>
-                    <p>Examples of integrating Data Broker search into existing software...</p>
-                </section>
-                <section>
-                    <img src="assets/bluesky-widgets/search-and-terminal.png" />
-                    <p class="standout">Model can be manipulated from IPython terminal</p>
-                </section>
-                <section>
-                    <img src="assets/bluesky-widgets/search-in-napari.png" />
-                    <p class="standout">Search Data Broker from napari (N-dimensional image viewer)</p>
-                </section>
-                <section>
-                    <img src="assets/bluesky-widgets/search-in-PyFAI.png" />
-                    <p class="standout">Search Data Broker from PyFAI (powder diffraction software)</p>
-                </section>
-                <section>
-                    <img src="assets/bluesky-widgets/search-in-Xi-CAM.png" />
-                    <p class="standout">Search Data Broker from Xi-CAM</p>
-                </section>
-            </section>
-            <section>
-                <section>
-                    <h3>Payoff:<br />Easy and robust integration with existing software</h3>
-                </section>
-                <section>
-                    <p>Proof of concept:<br />In this scan, each step is determined adaptively in response to local
-                        slope.</p>
-                    <img src="assets/adaptive-scan-demo.gif"
-                        style="max-width: 500px; height: auto; background-color: white;" />
-                    <p class="detail">The system is designed to make fast feedback easy to write.</p>
-                </section>
-                <section>
-                    <p>LCLS's <a href="https://pswww.slac.stanford.edu/swdoc/releases/skywalker/">Skywalker</a>
-                        project builds on this to automatically deliver the photon beam to a
-                        number of experimental hutches at LCLS.</p>
-                    <img src="assets/skywalker-demo.gif"
-                        style="max-width: 500px; height: auto; background-color: white;" />
-                </section>
-                <section>
-                    <p>A stream of images from a linear detector is reconstructed into a volume using <em>tomopy</em>
-                        (APS).</p>
-                    <img src="assets/tomopy-demo.gif"
-                        style="max-width: 700px; height: auto; background-color: white;" />
-                    <p class="detail">It took one TomoPy developer and one Bluesky developer less than 20 minutes to
-                        write this.</p>
-                </section>
-                <section>
-                    <p>A Gaussian is fit to a stream of measured data using the Python library <em>lmfit</em> (from U.
-                        Chicago / APS).</p>
-                    <img src="assets/livefit-demo.gif"
-                        style="max-width: 500px; height: auto; background-color: white;" />
-                </section>
-                <section>
-                    <p>The <a href="https://github.com/lbl-camera/Xi-cam">Xi-cam 2</a> GUI / plugin framework from
-                        CAMERA<br />
-                        has adopted Bluesky's Event Model<br />
-                        for its internal data structures.</p>
-                    <img src="assets/xicam-screenshot.png"
-                        style="max-width: 700px; height: auto; background-color: white;" />
-                </section>
-                <section>
-                    <p>Real-time Data Analysis at APS</p>
-                    <img src="assets/aps-shale-reconstruction.png" style="max-width: 700px; height: auto;" />
-                    <p class="detail">Data is streamed from APS to Argonne Leadership Compute Facility. Results are
-                        immediately visualized at APS.</p>
-                </section>
-            </section>
-            <!--
+                <!--
                 <section>
                     <section>
                         <h3>Possibly Controversial<br />Lessons Learned</h3>
@@ -934,33 +1045,21 @@ numpy.sum(df)</code></pre>
                     </section>
                 </section>
                 -->
-            <section>
-                <h3>Project Governance</h3>
-                <ul>
-                    <li><a href="https://github.com/bluesky/governance">Governance model (in process)</a></li>
-                    <li><strong>Maintainers</strong>: per repo, make day-to-day decisions and set processes as
-                        appropriate to the repo</li>
-                    <li><strong>Technical Steering Committee</strong>: arbitrate when maintainers cannot reach rough
-                        consensus</li>
-                    <li><strong>Project Advisory Board</strong>: management-level stakeholders, oversee big-picture
-                        priorities</li>
-                    <li>Currently in process of assembling these groups</li>
-                </ul>
-                <ul>
-                </ul>
-            </section>
-            <section>
-                <h3>Links</h3>
-                <ul>
-                    <li>Home Page and Documentation:<br /><a href="https://blueskyproject.io">blueskyproject.io</a></li>
-                    <li>Code and Arguments about Code:<br /><a href="https://github.com/bluesky">github.com/bluesky</a>
-                    </li>
-                    <li>Live, Public Demo Deployment (using Jupyter):<br /><a
-                            href="https://try.nsls2.bnl.gov">try.nsls2.bnl.gov</a></li>
-                    <li>These Slides:<br /><a
-                            href="https://blueskyproject.io/bluesky-slides">blueskyproject.io/bluesky-slides</a></li>
-                </ul>
-            </section>
+                <section>
+                    <h3>Links</h3>
+                    <ul>
+                        <li>Home Page and Documentation:<br /><a href="https://blueskyproject.io">blueskyproject.io</a>
+                        </li>
+                        <li>Code and Arguments about Code:<br /><a
+                                href="https://github.com/bluesky">github.com/bluesky</a>
+                        </li>
+                        <li>Live, Public Demo Deployment (using Jupyter):<br /><a
+                                href="https://try.nsls2.bnl.gov">try.nsls2.bnl.gov</a></li>
+                        <li>These Slides:<br /><a
+                                href="https://blueskyproject.io/bluesky-slides">blueskyproject.io/bluesky-slides</a>
+                        </li>
+                    </ul>
+                </section>
         </div>
     </div>
 
