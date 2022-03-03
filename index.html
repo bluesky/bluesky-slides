@@ -57,15 +57,85 @@
                     <p>("Giant X-ray beam")</p>
                 </section>
                 <section>
-                    <p>NSLS-II is a "User Facility"</p>
+                    <p class="standout">NSLS-II is a "User Facility"</p>
                     <ul>
                         <li>Scientific Staff spend 20% time on experiments, the rest on user support</li>
                         <li>Users mail samples or visit for ~1&ndash;10 days</li>
                         <li>28 active instruments ("beamlines"), 60-70 planned</li>
                     </ul>
                 </section>
+            </section>
+            <section>
                 <section>
-                    <p>Bluesky has been adopted piecemeal at other facilities</p>
+                    <h3>Motivation</h3>
+                </section>
+                <section>
+                    <p class="standout">Bluesky is designed in service to data analysis</p>
+                    <p>When analyzing data we want....</p>
+                    <ul>
+                        <li>To easily <strong>find</strong> the data we're looking for.</li>
+                        <li><strong>Access</strong> to that data, not particularly caring where it's stored or in what
+                            file format.</li>
+                        <li><strong>Well-structured data marked up with relevant context</strong>, to support easy and
+                            sometimes
+                            automated batch analysis.</li>
+                        <li>Seamless <strong>integration</strong> with popular data analysis tools.</li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="standout">Free, open-source scientific software is rapidly growing</p>
+                    <img src="assets/scipy-ecosystem.png" style="max-width: 70%; height: auto;" />
+                    <p class="credit">Figure Credit: "The Unexpected Effectiveness of Python in Science", PyCon 2017</p>
+                </section>
+                <section>
+                    <p class="standout">Bluesky is written in Python, which is very popular</p>
+                    <img src="assets/growth-major-languages.png" style="max-width: 70%; height: auto;" />
+                    <p class="credit">Figure Credit: Stack Overflow Blog
+                        https://stackoverflow.blog/2017/09/06/incredible-growth-python/</p>
+                </section>
+                <section>
+                    <p>Bluesky is designed for the long term</p>
+                    <ul>
+                        <li>Make it easy to keep <strong>file-reading and -writing code separate from scientific
+                                code</strong>.</li>
+                        <li>Support <strong>streaming</strong> (live-updating) visualization and processing, and
+                            <strong>adaptive experiment steering</strong>.
+                        </li>
+                        <li>Be <strong>cloud</strong>-friendly.</li>
+                        <li>...But also make it possible to opt out of that to keep things simple.</li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="standout">Bluesky has individually useful core components</p>
+                    <ul>
+                        <li><strong>Bluesky Run Engine</strong>: experiment orchestration and data acquisition
+                          <ul>
+                            <li>Emits data and metadata in a streaming fashion as it's available during acquisition</li>
+                            <li>Centrally manages any interruptions (pause/resume), failure modes, etc.</li>
+                        </ul></li>
+                    
+                        <li><strong>Bluesky Plans</strong>: experiment sequences (e.g. scans)
+                          <ul>
+                            <li>Designed with adaptive sequences in mind from the start</li>
+                            <li>Leaves room for hardware-triggered scanning — interesting new work happening here</li>
+                        </ul></li>
+                    
+                        <li><strong>Ophyd</strong>: interface to hardware</li>
+                        <li><strong>Suitcases</strong>
+                          <ul>
+                            <li>streaming export to popular formats (e.g. CSV, TIFF, …. NeXus support in progress)</li>
+                            <li>or streaming save lossless storage (e.g. MongoDB, msgpack — plus external large arrays)</li>
+                        </ul></li>
+                        <li><strong>Databroker</strong>: search and access saved data</li>
+                      </ul>
+                </section>
+                <section>
+                    <p class="standout">Other facilities have adopted Bluesky piecemeal, adapting, extending, or replacing components to
+                        meet their requirements.</p>
+                    <img src="assets/tools-on-pegboard.png" style="width: 70%; height: auto;" />
+                </section>
+                <section>
+                    <p class="standout">List of facilities known to use Bluesky (1 of 2)</p>
                     <ul>
                         <li>NSLS-II (used at 26/28 beamlines)</li>
                         <li>LCLS (widespread use) and SSRL (one or two instruments)</li>
@@ -73,13 +143,11 @@
                         <li>Australian Synchrotron (several beamlines)</li>
                         <li>ALS (at least one beamline, also scaling up)</li>
                         <li>Diamond (evaluating, but has made significant development investments)</li>
-                        <li><em>Continued on next slide...</em></li>
+                    </ul>
                 </section>
                 <section>
-                    <p>Bluesky has been adopted piecemeal at other facilities</p>
-                    </ul>
+                    <p class="standout">List of facilities known to use Bluesky (2 of 2)</p>
                     <ul>
-                        <li><em>Continued from previous slide...</em></li>
                         <li>Canadian Light Source (at least one)</li>
                         <li>PSI (evaluating, not yet committed to adoption)</li>
                         <li>Pohang Light Source II</li>
@@ -119,16 +187,6 @@
                 </section>
                 <section>
                     <p class="standout">What changed to make data problems easier?</p>
-                </section>
-                <section>
-                    <p>Free, open-source scientific software exploded.</p>
-                    <img src="assets/scipy-ecosystem.png" style="max-width: 70%; height: auto;" />
-                    <p class="credit">Figure Credit: "The Unexpected Effectiveness of Python in Science", PyCon 2017</p>
-                </section>
-                <section>
-                    <img src="assets/growth-major-languages.png" style="max-width: 70%; height: auto;" />
-                    <p class="credit">Figure Credit: Stack Overflow Blog
-                        https://stackoverflow.blog/2017/09/06/incredible-growth-python/</p>
                 </section>
                 <section>
                     <p>HPC is becoming more accessible.</p>
@@ -219,10 +277,7 @@
             </section>
             <section>
                 <section>
-                    <h3>Design Goals</h3>
-                    <p>both technical and sociological</p>
-                    <p>for an end-to-end data acquisition and analysis solution that leverages data science libraries
-                    </p>
+                    <p class="standout">Bluesky is designed in service to data analys.s</p>
                 </section>
                 <section>
                     <p class="standout">Technical Goals</p>
